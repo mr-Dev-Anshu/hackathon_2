@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* 
+    #555B6E -- primary
+    #89B0AE --
+    #BEE3DB
+    #FAF9F9
+    #FFD6BA
+*/
+
+.color{
+    @apply dark:text-white text-black 
+}
