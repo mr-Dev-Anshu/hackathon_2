@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Swiper from "../components/Swiper";
 
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <div className="flex justify-center items-center h-screen">
+      <Swiper/>
+    </div>
+  );
+};
 
-export default Home
+export default Home;
