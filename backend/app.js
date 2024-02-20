@@ -1,12 +1,17 @@
-import express from 'express';
-import cors from "cors"
+import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 
 const app = express();
-app.use(cors()) ;
-app.use(express.json ) ; 
+app.use(cors());
+app.use(express.json());
 dotenv.config({
-     path:"./env"
-})
+  path: "./env",
+});
 
-export default app ;  
+/// User Router
+import userRouter from "./router/user.router.js";
+
+app.use("/api/v1/users", userRouter);
+
+export default app;
