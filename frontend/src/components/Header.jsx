@@ -36,7 +36,8 @@ const Header = () => {
           <RiMenu3Fill />
         </HashLink>
       </div>
-    </div>
+      <hr />
+      </div>
   );
 };
 
