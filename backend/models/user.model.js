@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    isVerified:{
+      type:Number,
+      default:0
+    }
   },
   {
     timestamps: true,
