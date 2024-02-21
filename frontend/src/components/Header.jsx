@@ -8,9 +8,9 @@ const Header = () => {
 
   return (
     <div className="dark fixed w-full z-10">
-      <div className="w-full h-fit md:px-10 p-4 flex justify-between items-center">
+      <div className=" bg-white w-full h-fit md:px-10 p-4 flex justify-between items-center">
         <HashLink to="/">
-          <img className="h-12 " src={v1} alt="" />
+          <img className="h-12" src={v1} alt="" />
         </HashLink>
         <div className="sm:flex hidden text-lg justify-center items-center gap-16">
           <HashLink to="/">Home</HashLink>
@@ -22,13 +22,13 @@ const Header = () => {
           <HashLink>
             <FaSearch size={18} />
           </HashLink>
-          <HashLink to="/user">
+          <HashLink to="/login">
             <FaRegUser size={18} />
           </HashLink>
-          <HashLink to="wishlist">
+          <HashLink to="/wishlist">
             <FaHeart size={18} />
           </HashLink>
-          <HashLink to="orders">
+          <HashLink to="/orders">
             <FaShoppingBag size={18} />
           </HashLink>
         </div>
@@ -37,7 +37,7 @@ const Header = () => {
         </HashLink>
       </div>
       <hr />
-      </div>
+    </div>
   );
 };
 

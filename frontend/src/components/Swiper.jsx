@@ -2,11 +2,11 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
-import photo from "../assets/tshirt.jpg";
+import photo from "../assets/tshirt.jpg"
 
 const SwiperComponent = () => {
   return (
-    <div className=" outline py-8 px-6 w-full h-full  flex justify-center items-center ">
+    <div className=" pt-16 px-6 w-full h-screen  flex justify-center items-center ">
       <div className="w-full h-[90%] rounded-xl overflow-hidden flex justify-center items-center">
         <Swiper
           spaceBetween={70}
@@ -22,17 +22,13 @@ const SwiperComponent = () => {
           modules={[Autoplay, Pagination, Navigation]}
         >
           <SwiperSlide>
-            <img className="rounded-lg" src={photo} alt="" />
+            <img
+              className="rounded-lg object-cover w-full h-full"
+              src={photo}
+              alt=""
+            />
           </SwiperSlide>
-          <SwiperSlide>
-            <img className="rounded-lg" src={photo} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="rounded-lg" src={photo} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="rounded-lg" src={photo} alt="" />
-          </SwiperSlide>
+          
         </Swiper>
       </div>
     </div>
