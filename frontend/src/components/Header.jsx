@@ -5,7 +5,6 @@ import { HashLink } from "react-router-hash-link";
 import { RiMenu3Fill } from "react-icons/ri";
 
 const Header = () => {
-
   return (
     <div className="dark fixed w-full z-10">
       <div className=" bg-white w-full h-fit md:px-10 p-4 flex justify-between items-center">
@@ -14,9 +13,9 @@ const Header = () => {
         </HashLink>
         <div className="lg:flex hidden text-lg justify-center items-center gap-16">
           <HashLink to="/">Home</HashLink>
-          <HashLink to="/shop">Shop</HashLink>
           <HashLink to="/category">Category</HashLink>
           <HashLink to="/stores">Stores</HashLink>
+          <HashLink to="/offers">Offers</HashLink>
         </div>
         <div className="lg:flex hidden justify-center items-center gap-12">
           <HashLink>

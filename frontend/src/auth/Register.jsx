@@ -8,17 +8,20 @@ const Register = () => {
   const [formData, setFormData] = useState("");
 
   const handleChange = (e) => {
-    e.preventDefault();
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const { name, email, password } = formData;
-
-    await axios.post("/signup", { name, email, password }).then((res) => {
-      console.log(res.status);
-      console.log("User Created successfully!");
-    });
+    try {
+      await axios.post("/signup", { name, email, password }).then((res) => {
+        console.log(res.status);
+        console.log("User Created successfully!");
+      });
+    } catch (error) {
+      console.log("Something went Wrong!", error);
+    }
   };
 
   return (

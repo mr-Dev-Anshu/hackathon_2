@@ -16,13 +16,15 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formData;
-
-    await axios
-    .post("/signin", { email, password })
-    .then((res)=>{
+    try {
+      const response = await axios.post("/signin", { email, password }).then((res) => {
         console.log(res.status);
+        console.log(response);
         console.log("Logged in Succefully");
-    });
+      });
+    } catch (error) {
+      console.log("Something Went Wrong!", error);
+    }
   };
 
   return (
@@ -55,7 +57,11 @@ const Login = () => {
               <span className="outline outline-slate-200 outline-1 w-[20%]"></span>
             </div>
             <div className="py-3">
-              <form className="flex flex-col gap-4" action="" onSubmit={handleSubmit}>
+              <form
+                className="flex flex-col gap-4"
+                action=""
+                onSubmit={handleSubmit}
+              >
                 <input
                   className="outline p-3 rounded-md outline-slate-200"
                   type="email"
@@ -81,7 +87,9 @@ const Login = () => {
             <div className="flex gap-2 justify-center items-center">
               <p>Don't have an account ?</p>
               <HashLink to="/register">
-                <p className="text-blue-700 hover:underline">Create an account</p>
+                <p className="text-blue-700 hover:underline">
+                  Create an account
+                </p>
               </HashLink>
             </div>
           </div>
