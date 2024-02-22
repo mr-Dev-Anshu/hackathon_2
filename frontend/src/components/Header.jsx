@@ -12,13 +12,13 @@ const Header = () => {
         <HashLink to="/">
           <img className="h-12" src={v1} alt="" />
         </HashLink>
-        <div className="sm:flex hidden text-lg justify-center items-center gap-16">
+        <div className="lg:flex hidden text-lg justify-center items-center gap-16">
           <HashLink to="/">Home</HashLink>
           <HashLink to="/shop">Shop</HashLink>
-          <HashLink to="/blog">Blog</HashLink>
-          <HashLink to="/vendors">Vendors</HashLink>
+          <HashLink to="/category">Category</HashLink>
+          <HashLink to="/stores">Stores</HashLink>
         </div>
-        <div className="sm:flex hidden justify-center items-center gap-12">
+        <div className="lg:flex hidden justify-center items-center gap-12">
           <HashLink>
             <FaSearch size={18} />
           </HashLink>

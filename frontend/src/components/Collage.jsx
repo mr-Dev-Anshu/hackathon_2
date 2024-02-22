@@ -8,7 +8,7 @@ import i6 from "../assets/imgimg.jpg"
 
 const Collage = () => {
   return (
-    <div className="p-8 grid grid-cols-2 gap-4">
+    <div className=" p-2 lg:p-8 grid lg:grid-cols-2 grid-cols-1 gap-4">
       <div className=" grid grid-cols-2 gap-1">
         <div>
           <img className="h-full w-full object-cover" src={i1} alt="" />

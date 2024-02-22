@@ -6,7 +6,7 @@ import ProductPage from "./ProductPage";
 
 const Home = () => {
   return (
-    <div className="h-screen">
+    <div className="h-fit">
       <Swiper />
       <Policy />
       <Collage />
