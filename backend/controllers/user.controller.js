@@ -14,7 +14,6 @@ const sendVeriryEmail = async (username, email, id) => {
       pass: "mvuargxubgcgeyio",
     },
   });
-
   const mailOption = {
     from: "anshuies31@gmail.com",
     to: email,
@@ -27,7 +26,7 @@ const sendVeriryEmail = async (username, email, id) => {
       '">Verify </a> your mail </p>',
   };
 
-  await  transporter.sendMail(mailOption, (error, info) => {
+  await transporter.sendMail(mailOption, (error, info) => {
     if (error) {
       console.log(" there is error", error);
     } else {
@@ -86,10 +85,10 @@ export const setVerify = async (req, res) => {
     console.log(error.message, "yaha se ");
     res.json("you are cute ");
   }
-  console.log(id);
+  // console.log(id);
 };
 
 export const signin = (req, res) => {
   console.log("this is signin ");
-  res.status(200).json("this is sign  ... ");
+  res.status(200).json("this is sign  ...");
 };
