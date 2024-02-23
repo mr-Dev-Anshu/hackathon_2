@@ -4,13 +4,25 @@ import { BsCartPlus } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { HashLink } from "react-router-hash-link";
 import { CartContext } from "../context/Cart";
+import { WishlistContext } from "../context/Wishlist";
 
 const ProductCard = (props) => {
   const { items, setItems } = useContext(CartContext);
+  const { wishlist, setWishlist } = useContext(WishlistContext);
 
   const addToCart = () => {
-    setItems([...items, { name: props.name, price: props.price, src:props.src }]);
+    setItems([
+      ...items,
+      { name: props.name, price: props.price, src: props.src },
+    ]);
   };
+  const addToWishlist = () => {
+    setWishlist([
+      ...wishlist,
+      { name: props.name, src: props.src, price: props.price },
+    ]);
+  };
+
   return (
     <div className="h-fit w-64 p-1 rounded-md shadow-xl">
       <HashLink to={`/${props.id}`}>
@@ -35,7 +47,10 @@ const ProductCard = (props) => {
           <p className="text-lg font-semibold">Add To Cart</p>
           <BsCartPlus size={24} />
         </button>
-        <button className="outline outline-slate-300  p-2 rounded-lg">
+        <button
+          onClick={addToWishlist}
+          className="outline outline-slate-300  p-2 rounded-lg"
+        >
           <CiHeart size={24} />
         </button>
       </div>

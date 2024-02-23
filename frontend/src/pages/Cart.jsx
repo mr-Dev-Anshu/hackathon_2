@@ -5,7 +5,7 @@ const Cart = () => {
   const cart = useContext(CartContext);
 
   const total = cart.items.reduce((a, b) => a + b.price, 0);
-  const shippingCharges = total >= 499 ? 0 : 49;
+  const shippingCharges = total >= 499 ? 0 : Math.round(0.1*total);
   const gst = Math.round(0.2 * total);
 
   return (
