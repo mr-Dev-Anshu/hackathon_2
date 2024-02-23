@@ -35,6 +35,15 @@ const sendVeriryEmail = async (username, email, id) => {
   });
 };
 
+const generateTokens = async (id) => {
+  const user = await User.findById(id);
+
+  const accessToken = user.generateAccessToken();
+  const refreshToken = user.generateRefreshToken();
+  console.log("accessToken: ", accessToken);
+  console.log("RefreshToken: ", refreshToken);
+};
+
 export const signup = async (req, res) => {
   const { username, email, password } = req.body;
   try {
@@ -80,7 +89,10 @@ export const setVerify = async (req, res) => {
       { _id: id },
       { $set: { isVerified: 1 } }
     );
+    generateTokens(id);
+
     res.json("your email is verified now  ");
+    return true;
   } catch (error) {
     console.log(error.message, "yaha se ");
     res.json("you are cute ");
