@@ -6,6 +6,7 @@ import Register from "./auth/Register";
 import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 import OffersPage from "./pages/OffersPage";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/offers" element={<OffersPage />} />
+        <Route path="/orders" element={<Cart />} />
       </Routes>
       <Footer />
     </Router>
