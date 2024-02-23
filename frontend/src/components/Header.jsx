@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import v1 from "../assets/logoweb.png";
 import { FaHeart, FaRegUser, FaSearch, FaShoppingBag } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 import { RiMenu3Fill } from "react-icons/ri";
+import { useContext } from "react";
+import { currentUserContext } from "../context/userContext/CurrentUserContext";
 
 const Header = () => {
+  let { currUser } = useContext(currentUserContext);
+
   return (
     <div className="dark fixed w-full z-10">
       <div className=" bg-white w-full h-fit md:px-10 p-4 flex justify-between items-center">
@@ -22,7 +26,13 @@ const Header = () => {
             <FaSearch size={18} />
           </HashLink>
           <HashLink to="/login">
-            <FaRegUser size={18} />
+            {currUser ? (
+              <p className="text-xl font-bold rounded-[50%] px-3 py-1.5 bg-black text-white   border border-blue-500">
+                {currUser.email.charAt(0).toUpperCase()}{" "}
+              </p>
+            ) : (
+              <FaRegUser size={18} />
+            )}
           </HashLink>
           <HashLink to="/wishlist">
             <FaHeart size={18} />

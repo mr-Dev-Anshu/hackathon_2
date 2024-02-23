@@ -67,4 +67,8 @@ userSchema.methods.generateRefreshToken = function () {
   );
 };
 
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
 export const User = mongoose.model("Users", userSchema);

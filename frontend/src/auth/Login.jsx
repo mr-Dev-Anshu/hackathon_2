@@ -16,15 +16,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formData;
-    try {
-      const response = await axios.post("/signin", { email, password }).then((res) => {
-        console.log(res.status);
-        console.log(response);
-        console.log("Logged in Succefully");
-      });
-    } catch (error) {
-      console.log("Something Went Wrong!", error);
-    }
+    console.log (email , password )
+      try {
+        console.log ("yaha tak ")
+        const response = await axios.post("api/v1/users/signin" , {email , password }) ;
+        console.log (response);
+      } catch (error) {
+        console.log (error.response.status) 
+      }
   };
 
   return (

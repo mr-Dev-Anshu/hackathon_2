@@ -40,8 +40,8 @@ const generateTokens = async (id) => {
 
   const accessToken = user.generateAccessToken();
   const refreshToken = user.generateRefreshToken();
-  console.log("accessToken: ", accessToken);
-  console.log("RefreshToken: ", refreshToken);
+
+  return { accessToken, refreshToken };
 };
 
 export const signup = async (req, res) => {
@@ -89,7 +89,12 @@ export const setVerify = async (req, res) => {
       { _id: id },
       { $set: { isVerified: 1 } }
     );
-    generateTokens(id);
+    const { accessToken, refreshToken } = await generateTokens(id);
+
+    console.log(" this is access token :  ", accessToken);
+    console.log(" this is refresh  token :  ", refreshToken);
+    res.cookie("accessToken", accessToken, { httpOnly: true });
+    res.cookie("refereshToken", refreshToken, { httpOnly: true });
 
     res.json("your email is verified now  ");
     return true;
@@ -100,7 +105,51 @@ export const setVerify = async (req, res) => {
   // console.log(id);
 };
 
-export const signin = (req, res) => {
-  console.log("this is signin ");
-  res.status(200).json("this is sign  ...");
+export const signin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email) {
+      throw new ApiError(400, "Email is required ");
+    }
+
+    const user = await User.findOne({ email });
+    const isPasswordCorrect = await user.isCorrectPassword(password);
+
+    if (!isPasswordCorrect) {
+      throw new ApiError(401, "Password is incorrect ");
+    }
+
+    const loggedInUser = await User.findById(user._id).select("-password");
+
+    console.log(loggedInUser);
+
+    const option = {
+      httpOnly: true,
+    };
+      
+     const {accessToken , refreshToken} = await  generateTokens(user._id);
+    return res
+      .status(200)
+      .cookie("accessToken ", accessToken, option)
+      .cookie("refereshToken", refreshToken, option)
+      .json(
+        new ApiResponse(
+          200,
+          { users: loggedInUser },
+          "User Logedin successfully"
+        )
+      );
+  } catch (error) {
+    res.status(error?.statusCode).json(error.message);
+  }
 };
+
+
+ export const currentuser  = async (req , res) => {
+    res.status(200). 
+       json(req.user)
+}
+
+
+
