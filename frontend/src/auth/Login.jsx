@@ -28,9 +28,9 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen w-full flex justify-center items-center pt-6">
-      <div className="flex h-[75%] w-[60%] rounded-xl shadow-2xl overflow-hidden">
-        <div className=" w-[50%] h-full p-10 px-12 flex flex-col gap-4">
+    <div className="h-full w-full flex justify-center items-center pt-24 p-6">
+      <div className="flex h-full w-[60%] rounded-xl shadow-2xl overflow-hidden">
+        <div className=" w-[50%] p-10 px-12 flex flex-col gap-4 outline">
           <img className="w-28" src={img} alt="" />
           <div className="flex flex-col justify-center gap-2 ">
             <div className="mb-4">
@@ -94,8 +94,8 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <div className=" w-[50%] h-full overflow-hidden">
-          <img className=" object-cover h-full w-full" src={img3} alt="" />
+        <div className=" w-[50%] overflow-hidden">
+          <img className=" object-cover w-full" src={img3} alt="" />
         </div>
       </div>
     </div>
