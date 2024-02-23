@@ -7,6 +7,7 @@ import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 import OffersPage from "./pages/OffersPage";
 import Cart from "./pages/Cart";
+import Stores from "./pages/Stores";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/offers" element={<OffersPage />} />
         <Route path="/orders" element={<Cart />} />
+        <Route path="/stores" element={<Stores />} />
       </Routes>
       <Footer />
     </Router>

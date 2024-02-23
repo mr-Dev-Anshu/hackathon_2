@@ -11,9 +11,8 @@ const ProductCard = (props) => {
   const addToCart = () => {
     setItems([...items, { name: props.name, price: props.price, src:props.src }]);
   };
-  console.log(items);
   return (
-    <div className="h-fit w-fit p-1 rounded-md shadow-xl">
+    <div className="h-fit w-64 p-1 rounded-md shadow-xl">
       <HashLink to={`/${props.id}`}>
         <img
           className="h-52 w-full object-cover rounded-sm mb-2"
