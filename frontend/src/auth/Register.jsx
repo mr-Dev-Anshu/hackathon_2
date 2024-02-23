@@ -13,12 +13,17 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, email, password } = formData;
+    const { username, email, password } = formData;
     try {
-      await axios.post("/signup", { name, email, password }).then((res) => {
-        console.log(res.status);
-        console.log("User Created successfully!");
-      });
+      const response = await axios.post(
+        "api/v1/users/signup",
+        {
+          username,
+          email,
+          password,
+        }
+      );
+      console.log(response);
     } catch (error) {
       console.log("Something went Wrong!", error);
     }
@@ -45,7 +50,7 @@ const Register = () => {
                 <input
                   className="outline p-3 rounded-md outline-slate-200"
                   type="text"
-                  id="name"
+                  id="username"
                   placeholder="Name"
                   onChange={handleChange}
                 />
