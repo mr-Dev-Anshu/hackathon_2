@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import OffersPage from "./pages/OffersPage";
 import Cart from "./pages/Cart";
 import Stores from "./pages/Stores";
+import Wishlist from "./pages/Wishlist";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/offers" element={<OffersPage />} />
         <Route path="/orders" element={<Cart />} />
         <Route path="/stores" element={<Stores />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
       <Footer />
     </Router>
