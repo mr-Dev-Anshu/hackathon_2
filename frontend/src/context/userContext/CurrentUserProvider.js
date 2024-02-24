@@ -11,6 +11,7 @@ export const CurrentUserProvider = ({ children }) => {
       try {
         const response = await axios.get("api/v1/users/currentuser");
         const userData = response.data;
+        console.log(userData);
         setCurrUser(userData);
       } catch (error) {
         console.error("Error fetching current user:", error);

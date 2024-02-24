@@ -9,15 +9,23 @@ import OffersPage from "./pages/OffersPage";
 import Cart from "./pages/Cart";
 import Stores from "./pages/Stores";
 import Wishlist from "./pages/Wishlist";
+import { useContext } from "react";
+import { currentUserContext } from "./context/userContext/CurrentUserProvider";
+import UserProfilePage from "./pages/UserProfilePage";
 
 function App() {
+  const { currUser } = useContext(currentUserContext);
+
   return (
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path={currUser ? "/user" : "/register"}
+          element={currUser ? <UserProfilePage /> : <Register />}
+        />
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/offers" element={<OffersPage />} />
         <Route path="/orders" element={<Cart />} />

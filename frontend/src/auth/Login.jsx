@@ -18,7 +18,6 @@ const Login = () => {
     const { email, password } = formData;
     console.log (email , password )
       try {
-        console.log ("yaha tak ")
         const response = await axios.post("api/v1/users/signin" , {email , password }) ;
         console.log (response);
       } catch (error) {

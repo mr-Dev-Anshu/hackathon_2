@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { WishlistContext } from "../context/Wishlist";
+import { IoMdHeartEmpty } from "react-icons/io";
+
 // import { CartContext } from "../context/Cart";
 
 const Wishlist = () => {
@@ -11,7 +13,13 @@ const Wishlist = () => {
   // };
 
   return (
-    <div className="pt-24">
+    <div className="pt-20">
+      <div className="p-2 bg-slate-300">
+        <p className="px-8 text-3xl flex items-center gap-4 justify-start">
+          WishList <IoMdHeartEmpty size={36} />
+        </p>
+      </div>
+      <hr />
       {Wish &&
         Wish.wishlist.map((wish) => (
           <li className=" flex p-3 shadow-md w-full rounded-lg" key={wish.id}>

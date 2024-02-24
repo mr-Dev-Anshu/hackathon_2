@@ -10,7 +10,6 @@ const Header = () => {
   let { currUser } = useContext(currentUserContext);
   console.log(currUser);
 
-
   return (
     <div className="dark fixed w-full z-10">
       <div className=" bg-white w-full h-fit md:px-10 p-4 flex justify-between items-center">
@@ -33,13 +32,13 @@ const Header = () => {
           <HashLink to="/orders">
             <FaShoppingBag size={18} />
           </HashLink>
-          <HashLink to="/login">
-            {currUser==null ? (
+          <HashLink to={currUser ? "/user" : "/login"}>
+            {currUser == null ? (
               <FaRegUser size={18} />
-              ) : (
-                <p className="outline outline-slate-300 font-bold text-slate-500 h-7 w-7 rounded-full flex justify-center items-center">
+            ) : (
+              <p className="outline outline-slate-300 font-bold text-slate-500 h-7 w-7 rounded-full flex justify-center items-center">
                 {currUser.email.charAt(0).toUpperCase()}
-                </p>
+              </p>
             )}
           </HashLink>
         </div>
