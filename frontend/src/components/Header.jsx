@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import v1 from "../assets/logoweb.png";
 import { FaHeart, FaRegUser, FaSearch, FaShoppingBag } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
