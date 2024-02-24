@@ -148,3 +148,30 @@ export const signin = async (req, res) => {
 export const currentuser = async (req, res) => {
   res.status(200).json(req.user);
 };
+
+export const logout = async (req, res) => {
+  const user = req.user;
+
+  try {
+    const newUser = User.findByIdAndUpdate(
+      user._id,
+      {
+        isVerified: 0,
+      },
+      {
+        new: true,
+      }
+    );
+
+    const options = {
+      httpOnly: true,
+      secure: true,
+    };
+     console.log ("log out ")
+    res
+      .status(200)
+      .clearCookie("accessToken", options)
+      .clearCookie("refreshToken", options)
+      .json(new ApiResponse(200, {}, "User logged Out Successfully "));
+  } catch (error) {}
+};

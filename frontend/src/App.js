@@ -12,6 +12,7 @@ import Wishlist from "./pages/Wishlist";
 import { useContext } from "react";
 import { currentUserContext } from "./context/userContext/CurrentUserProvider";
 import UserProfilePage from "./pages/UserProfilePage";
+import UploadProduct from "./pages/UploadProduct";
 
 function App() {
   const { currUser } = useContext(currentUserContext);
@@ -31,6 +32,7 @@ function App() {
         <Route path="/orders" element={<Cart />} />
         <Route path="/stores" element={<Stores />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/product" element={<UploadProduct />} />
       </Routes>
       <Footer />
     </Router>
