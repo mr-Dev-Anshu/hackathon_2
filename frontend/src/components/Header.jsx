@@ -4,10 +4,12 @@ import { FaHeart, FaRegUser, FaSearch, FaShoppingBag } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 import { RiMenu3Fill } from "react-icons/ri";
 import { useContext } from "react";
-import { currentUserContext } from "../context/userContext/CurrentUserContext";
+import { currentUserContext } from "../context/userContext/CurrentUserProvider";
 
 const Header = () => {
   let { currUser } = useContext(currentUserContext);
+  console.log(currUser);
+
 
   return (
     <div className="dark fixed w-full z-10">
@@ -25,20 +27,20 @@ const Header = () => {
           <HashLink>
             <FaSearch size={18} />
           </HashLink>
-          <HashLink to="/login">
-            {currUser ? (
-              <p className="text-xl font-bold rounded-[50%] px-3 py-1.5 bg-black text-white   border border-blue-500">
-                {currUser.email.charAt(0).toUpperCase()}{" "}
-              </p>
-            ) : (
-              <FaRegUser size={18} />
-            )}
-          </HashLink>
           <HashLink to="/wishlist">
             <FaHeart size={18} />
           </HashLink>
           <HashLink to="/orders">
             <FaShoppingBag size={18} />
+          </HashLink>
+          <HashLink to="/login">
+            {currUser==null ? (
+              <FaRegUser size={18} />
+              ) : (
+                <p className="outline outline-slate-300 font-bold text-slate-500 h-7 w-7 rounded-full flex justify-center items-center">
+                {currUser.email.charAt(0).toUpperCase()}
+                </p>
+            )}
           </HashLink>
         </div>
         <HashLink className="md:hidden block">

@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { currentUserContext } from "./CurrentUserContext";
+import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
+export const currentUserContext = createContext(null);
+
 export const CurrentUserProvider = ({ children }) => {
-  const [currUser, setCurrUser] = React.useState({});
+  const [currUser, setCurrUser] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,4 +26,3 @@ export const CurrentUserProvider = ({ children }) => {
   );
 };
 
-export default CurrentUserProvider;

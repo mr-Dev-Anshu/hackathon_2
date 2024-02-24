@@ -17,13 +17,13 @@ const sendVeriryEmail = async (username, email, id) => {
   const mailOption = {
     from: "anshuies31@gmail.com",
     to: email,
-    subject: "For verification mail ",
+    subject: "Made for me Verification email !",
     html:
-      "<p>Hey  " +
+      "<p>Hey \n" +
       username +
-      ' Please click very link for varification <a href="http://localhost:8000/api/v1/users/verify?id=' +
+      'Please click verify link for verification <button> <a href="http://localhost:8000/api/v1/users/verify?id=' +
       id +
-      '">Verify </a> your mail </p>',
+      '">Verify</a></button> your mail </p>',
   };
 
   await transporter.sendMail(mailOption, (error, info) => {
@@ -127,8 +127,8 @@ export const signin = async (req, res) => {
     const option = {
       httpOnly: true,
     };
-      
-     const {accessToken , refreshToken} = await  generateTokens(user._id);
+
+    const { accessToken, refreshToken } = await generateTokens(user._id);
     return res
       .status(200)
       .cookie("accessToken ", accessToken, option)
@@ -145,11 +145,6 @@ export const signin = async (req, res) => {
   }
 };
 
-
- export const currentuser  = async (req , res) => {
-    res.status(200). 
-       json(req.user)
-}
-
-
-
+export const currentuser = async (req, res) => {
+  res.status(200).json(req.user);
+};

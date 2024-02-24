@@ -9,11 +9,9 @@ import OffersPage from "./pages/OffersPage";
 import Cart from "./pages/Cart";
 import Stores from "./pages/Stores";
 import Wishlist from "./pages/Wishlist";
-import CurrentUserProvider from "./context/userContext/CurrentUserProvider";
 
 function App() {
   return (
-    <CurrentUserProvider>
     <Router>
       <Header />
       <Routes>
@@ -28,7 +26,6 @@ function App() {
       </Routes>
       <Footer />
     </Router>
-    </CurrentUserProvider>
   );
 }
 
