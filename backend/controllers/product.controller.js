@@ -2,11 +2,12 @@ import { Product } from "../models/product.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+
 export const uploadProduct = async (req, res) => {
   try {
-    const { name, price, category, discreption, quantity } = req.body;
+    const { name, price, category, description, quantity, username} = req.body;
     if (
-      [name, price, category, discreption, quantity].some(
+      [name, price, category, description, quantity, username].some(
         (field) => field.trim() == ""
       )
     ) {
@@ -30,7 +31,8 @@ export const uploadProduct = async (req, res) => {
       price,
       category,
       quantity,
-      discreption,
+      description,
+      username,
       productImg: imageUrl,
     });
 

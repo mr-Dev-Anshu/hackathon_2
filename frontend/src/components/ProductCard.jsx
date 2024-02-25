@@ -16,12 +16,15 @@ const ProductCard = (props) => {
       { name: props.name, price: props.price, src: props.src },
     ]);
   };
+  
   const addToWishlist = () => {
     setWishlist([
       ...wishlist,
       { name: props.name, src: props.src, price: props.price },
     ]);
   };
+
+  console.log(props.id);
 
   return (
     <div className="h-fit w-64 p-1 rounded-md shadow-xl">

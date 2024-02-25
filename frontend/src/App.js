@@ -16,12 +16,11 @@ import UserProfilePage from "./pages/UserProfilePage";
 import UploadProduct from "./pages/UploadProduct";
 import { useEffect } from "react";
 
-
 function App() {
   const { currUser } = useContext(currentUserContext);
-  useEffect(()=> {
-       console.log ("user is verify ")
-  } , [currUser?.isVerified])
+  useEffect(() => {
+    console.log("user is verified ! ");
+  }, [currUser?.isVerified]);
   return (
     <Router>
       <Header />

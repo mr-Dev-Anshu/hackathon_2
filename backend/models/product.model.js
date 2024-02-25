@@ -8,7 +8,7 @@ const productSchema = mongoose.Schema({
     type: String,
     require: true,
   },
-  discreption: {
+  description: {
     type: String,
     require: true,
   },

@@ -99,10 +99,8 @@ export const setVerify = async (req, res) => {
     res.json("your email is verified now  ");
     return true;
   } catch (error) {
-    console.log(error.message, "yaha se ");
     res.json("you are cute ");
   }
-  // console.log(id);
 };
 
 export const signin = async (req, res) => {
