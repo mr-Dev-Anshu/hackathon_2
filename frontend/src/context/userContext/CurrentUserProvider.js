@@ -5,6 +5,7 @@ export const currentUserContext = createContext(null);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currUser, setCurrUser] = useState();
+  let isVerified = currUser?.isVerified;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +19,7 @@ export const CurrentUserProvider = ({ children }) => {
       }
     };
     fetchData();
-  }, []); // Empty dependency array ensures the effect runs only once on component mount
+  }, [isVerified]); // Empty dependency array ensures the effect runs only once on component mount
 
   return (
     <currentUserContext.Provider value={{ currUser, setCurrUser }}>
