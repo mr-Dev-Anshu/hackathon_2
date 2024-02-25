@@ -5,10 +5,11 @@ import axios from "axios";
 import { HashLink } from "react-router-hash-link";
 import { FcGoogle } from "react-icons/fc";
 import { FaSkype } from "react-icons/fa";
+import {useNavigate} from "react-router-dom"
 
 const Login = () => {
   const [formData, setFormData] = useState("");
-
+  const  navigate = useNavigate() ; 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -19,6 +20,8 @@ const Login = () => {
     console.log (email , password )
       try {
         const response = await axios.post("api/v1/users/signin" , {email , password }) ;
+        navigate("/")
+        window.location.reload()
         console.log (response);
       } catch (error) {
         console.log (error.response.status) 

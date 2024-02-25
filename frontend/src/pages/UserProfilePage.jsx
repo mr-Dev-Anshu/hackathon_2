@@ -5,8 +5,17 @@ import { FaMapLocation } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
 import userprofile from "../assets/User.jpg";
 import { FaHandsHelping } from "react-icons/fa";
+import axios from "axios";
 
 const UserProfilePage = () => {
+  const logout = async () => {
+    try {
+      const response = axios.get("api/v1/users/logout");
+      console.log(response);
+    } catch (error) {
+      console.log("there is some error while logging out ");
+    }
+  };
   const { currUser } = useContext(currentUserContext);
   ;
   return (
@@ -76,7 +85,9 @@ const UserProfilePage = () => {
             </button>
           </div>
           <div className="p-4 text-xl font-semibold rounded-lg shadow-xl flex justify-center items-center hover:bg-orange-400 transition-colors duration-200">
-            <button className="w-full">Log Out</button>
+            <button onClick={logout} className="w-full">
+              Log Out
+            </button>
           </div>
         </div>
       </div>

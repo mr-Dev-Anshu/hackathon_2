@@ -14,6 +14,8 @@ export const jwtVerify = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    console.log(error);
+    console.log("Not verified user ");
   }
 };
+
+

@@ -19,7 +19,9 @@ export const CurrentUserProvider = ({ children }) => {
       }
     };
     fetchData();
-  }, [isVerified]); // Empty dependency array ensures the effect runs only once on component mount
+  }, []); 
+
+  
 
   return (
     <currentUserContext.Provider value={{ currUser, setCurrUser }}>
