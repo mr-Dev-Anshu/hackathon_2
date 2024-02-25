@@ -167,7 +167,7 @@ export const logout = async (req, res) => {
       httpOnly: true,
       secure: true,
     };
-     console.log ("log out ")
+    console.log("log out ");
     res
       .status(200)
       .clearCookie("accessToken", options)
