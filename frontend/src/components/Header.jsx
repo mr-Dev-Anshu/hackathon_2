@@ -21,6 +21,7 @@ const Header = () => {
           <HashLink to="/category">Category</HashLink>
           <HashLink to="/stores">Stores</HashLink>
           <HashLink to="/offers">Offers</HashLink>
+          <HashLink to="/uploadProduct">Upload</HashLink>
         </div>
         <div className="lg:flex hidden justify-center items-center gap-12">
           <HashLink>

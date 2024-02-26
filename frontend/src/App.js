@@ -14,13 +14,10 @@ import { currentUserContext } from "./context/userContext/CurrentUserProvider";
 import UserProfilePage from "./pages/UserProfilePage";
 
 import UploadProduct from "./pages/UploadProduct";
-import { useEffect } from "react";
 
 function App() {
   const { currUser } = useContext(currentUserContext);
-  useEffect(() => {
-    console.log("user is verified ! ");
-  }, [currUser?.isVerified]);
+
   return (
     <Router>
       <Header />
@@ -36,7 +33,7 @@ function App() {
         <Route path="/orders" element={<Cart />} />
         <Route path="/stores" element={<Stores />} />
         <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/product" element={<UploadProduct />} />
+        <Route path="/uploadProduct" element={<UploadProduct />} />
       </Routes>
       <Footer />
     </Router>

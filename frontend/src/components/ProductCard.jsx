@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 import { BsCartPlus } from "react-icons/bs";
-
-import { CiHeart } from "react-icons/ci";
 import { HashLink } from "react-router-hash-link";
 import { CartContext } from "../context/Cart";
 import { WishlistContext } from "../context/Wishlist";
 import toast, { Toaster } from "react-hot-toast";
 import { currentUserContext } from "../context/userContext/CurrentUserProvider";
 import { useNavigate } from "react-router-dom";
+import { FaRegHeart } from "react-icons/fa";
 
 const ProductCard = (props) => {
   const { currUser } = useContext(currentUserContext);
@@ -16,8 +15,7 @@ const ProductCard = (props) => {
   const { wishlist, setWishlist } = useContext(WishlistContext);
 
   // toast
-  const notifySuccess = () =>
-    toast.success("Added to Cart!", { duration: 1000 });
+  const notifySuccess = (message) => toast.success(message, { duration: 1000 });
   const warning = () => toast("Please Login!", { duration: 1000 });
 
   const addToCart = () => {
@@ -31,7 +29,7 @@ const ProductCard = (props) => {
         ...items,
         { name: props.name, price: props.price, src: props.src },
       ]);
-      notifySuccess();
+      notifySuccess("Added to Cart!");
     }
   };
 
@@ -46,10 +44,9 @@ const ProductCard = (props) => {
         ...wishlist,
         { name: props.name, src: props.src, price: props.price },
       ]);
+      notifySuccess("Added to Wishlist!");
     }
   };
-
-  console.log(props.id);
 
   return (
     <div className="h-fit w-64 p-1 rounded-md shadow-xl">
@@ -59,11 +56,9 @@ const ProductCard = (props) => {
           src={props.src}
           alt=""
         />
-        <div className="w-full flex flex-col gap-2 p-2">
-          <p className=" text-xl">{props.name}</p>
-          <p className=" text-xs text-slate-400 font-semibold">
-            {props.category}
-          </p>
+        <div className="w-full flex flex-col gap-2 p-1">
+          <p className=" text-xl font-semibold">{props.name}</p>
+          <p className=" text-md text-slate-500">{props.category}</p>
           <p className="text-xl w-fit font-bold ">{`₹ ${props.price}`}</p>
         </div>
       </HashLink>
@@ -77,9 +72,9 @@ const ProductCard = (props) => {
         </button>
         <button
           onClick={addToWishlist}
-          className="outline outline-slate-300  p-2 rounded-lg"
+          className="outline outline-slate-300  p-2 rounded-lg  hover:bg-red-500 hover:text-white transition-all duration-300"
         >
-          <CiHeart size={24} />
+          <FaRegHeart size={24} />
         </button>
         <Toaster />
       </div>

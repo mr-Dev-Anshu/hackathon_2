@@ -79,7 +79,7 @@ const UploadProduct = () => {
           />
           <input
             required
-            className="p-2 rounded-lg   shadow-xl capitalize"
+            className="p-2 rounded-lg   shadow-xl "
             type="text"
             placeholder="Description"
             onChange={handlechange}

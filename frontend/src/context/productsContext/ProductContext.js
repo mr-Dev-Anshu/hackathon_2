@@ -1,22 +1,31 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
-const productContext = createContext();
+export const productContext = createContext();
 
-const ProductContextProvider = ({ children }) => {
+export const ProductContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
     const fetchProduct = async () => {
       const product = await axios.get("api/v1/products/all-products");
-      const fetchedProduct = product.data;
-      console.log(fetchProduct);
+      const fetchedProduct = product?.data?.data;
       setProduct(fetchedProduct);
       setLoading(false);
     };
     fetchProduct();
-  });
+  }, [product]);
 
-  return <productContext.Provider></productContext.Provider>;
+  return (
+    <productContext.Provider value={{ product }}>
+      {!loading ? (
+        children
+      ) : (
+        <div className=" w-full h-screen flex justify-center items-center text-6xl">
+          Loading...
+        </div>
+      )}
+    </productContext.Provider>
+  );
 };
