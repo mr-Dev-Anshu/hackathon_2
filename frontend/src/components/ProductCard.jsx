@@ -5,23 +5,48 @@ import { CiHeart } from "react-icons/ci";
 import { HashLink } from "react-router-hash-link";
 import { CartContext } from "../context/Cart";
 import { WishlistContext } from "../context/Wishlist";
+import toast, { Toaster } from "react-hot-toast";
+import { currentUserContext } from "../context/userContext/CurrentUserProvider";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = (props) => {
+  const { currUser } = useContext(currentUserContext);
+  const navigate = useNavigate();
   const { items, setItems } = useContext(CartContext);
   const { wishlist, setWishlist } = useContext(WishlistContext);
 
+  // toast
+  const notifySuccess = () =>
+    toast.success("Added to Cart!", { duration: 1000 });
+  const warning = () => toast("Please Login!", { duration: 1000 });
+
   const addToCart = () => {
-    setItems([
-      ...items,
-      { name: props.name, price: props.price, src: props.src },
-    ]);
+    if (!currUser) {
+      warning();
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
+    } else {
+      setItems([
+        ...items,
+        { name: props.name, price: props.price, src: props.src },
+      ]);
+      notifySuccess();
+    }
   };
-  
+
   const addToWishlist = () => {
-    setWishlist([
-      ...wishlist,
-      { name: props.name, src: props.src, price: props.price },
-    ]);
+    if (!currUser) {
+      warning();
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
+    } else {
+      setWishlist([
+        ...wishlist,
+        { name: props.name, src: props.src, price: props.price },
+      ]);
+    }
   };
 
   console.log(props.id);
@@ -56,6 +81,7 @@ const ProductCard = (props) => {
         >
           <CiHeart size={24} />
         </button>
+        <Toaster />
       </div>
     </div>
   );

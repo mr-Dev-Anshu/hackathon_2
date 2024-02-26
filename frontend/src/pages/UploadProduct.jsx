@@ -1,8 +1,24 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import logo from "../assets/logoweb.png";
+import { currentUserContext } from "../context/userContext/CurrentUserProvider";
 
 const UploadProduct = () => {
-  const [productData, setProductData] = useState();
+  const { currUser } = useContext(currentUserContext);
+  const user = currUser?.username;
+
+  const [productData, setProductData] = useState({
+    username: user,
+    category: "",
+    name: "",
+    description: "",
+    price: 0,
+    quantity: 0,
+    productImg: "",
+  });
+
+  console.log(productData);
 
   const handlechange = (e) => {
     if (e.target.id === "productImg") {
@@ -12,67 +28,74 @@ const UploadProduct = () => {
     }
   };
 
+  const notifySuccess = () => toast.success("Product uploaded successfully!");
+  const notifyError = () => toast.error("Product not uploaded!");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       console.log(productData);
 
-      const res = await axios.post("api/v1/products/add", productData, {
+      await axios.post("api/v1/products/add", productData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res);
+      notifySuccess();
     } catch (error) {
-      console.log("bhag bsdk !");
+      console.log("Error occured while uploading product ");
+      notifyError();
     }
   };
+
   return (
-    <div className="pt-20 flex justify-center items-center h-screen">
+    <div className="pt-12 flex justify-center items-center">
       <div className=" h-fit w-fit p-8">
         <form
-          className=" flex flex-col outline rounded-xl p-4 gap-4"
+          className=" flex flex-col shadow-xl rounded-xl p-6 gap-4"
           action=""
           method="POST"
         >
+          <img className="" src={logo} alt="" />
+          <p className="text-center text-xl font-bold uppercase shadow-xl rounded-lg p-1 ">
+            Upload Product
+          </p>
           <input
-            className="outline p-2 rounded-lg "
+            required
+            className=" p-2 rounded-lg  shadow-xl capitalize "
             type="text"
-            placeholder="Username"
-            onChange={handlechange}
-            id="username"
-          />
-          <input
-            className="outline p-2 rounded-lg "
-            type="text"
-            placeholder="category"
+            placeholder="Category"
             onChange={handlechange}
             id="category"
           />
           <input
-            className="outline p-2 rounded-lg "
+            required
+            className=" p-2 rounded-lg  shadow-xl capitalize"
             type="text"
             placeholder="Name of the product"
             onChange={handlechange}
             id="name"
           />
           <input
-            className="outline p-2 rounded-lg "
+            required
+            className="p-2 rounded-lg   shadow-xl capitalize"
             type="text"
             placeholder="Description"
             onChange={handlechange}
             id="description"
           />
           <input
-            className="outline p-2 rounded-lg "
+            required
+            className="p-2 rounded-lg   shadow-xl"
             type="number"
             placeholder="Price"
             onChange={handlechange}
             id="price"
           />
           <input
-            className="outline p-2 rounded-lg "
+            required
+            className="p-2 rounded-lg shadow-xl"
             type="number"
             min={1}
             max={500}
@@ -81,7 +104,8 @@ const UploadProduct = () => {
             id="quantity"
           />
           <input
-            className="outline p-2 rounded-lg "
+            required
+            className="p-2 rounded-lg shadow-xl"
             type="file"
             id="productImg"
             onChange={handlechange}
@@ -89,9 +113,13 @@ const UploadProduct = () => {
             accept="image/*"
           />
 
-          <button onClick={handleSubmit} className="outline p-2 rounded-lg  ">
+          <button
+            onClick={handleSubmit}
+            className=" p-2 rounded-lg shadow-xl text-xl bg-green-200 font-bold font-serif  "
+          >
             Upload
           </button>
+          <Toaster />
         </form>
       </div>
     </div>

@@ -6,18 +6,29 @@ import { FaHeart } from "react-icons/fa6";
 import userprofile from "../assets/User.jpg";
 import { FaHandsHelping } from "react-icons/fa";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const UserProfilePage = () => {
+  const notifySuccess = () => toast.success("User logged out successfully !");
+  const notifyError = () => toast.success("Error occured !");
+  const navigate = useNavigate();
+
   const logout = async () => {
     try {
-      const response = axios.get("api/v1/users/logout");
+      const response = await axios.get("api/v1/users/logout");
+      notifySuccess();
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 1500);
       console.log(response);
     } catch (error) {
-      console.log("there is some error while logging out ");
+      notifyError();
+      console.log("There is some error while logging out !");
     }
   };
   const { currUser } = useContext(currentUserContext);
-  ;
   return (
     <div className="pt-20 w-full">
       <div className=" p-12 flex gap-4 w-full">
@@ -88,6 +99,7 @@ const UserProfilePage = () => {
             <button onClick={logout} className="w-full">
               Log Out
             </button>
+            <Toaster />
           </div>
         </div>
       </div>

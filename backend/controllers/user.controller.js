@@ -120,8 +120,6 @@ export const signin = async (req, res) => {
 
     const loggedInUser = await User.findById(user._id).select("-password");
 
-    console.log(loggedInUser);
-
     const option = {
       httpOnly: true,
     };

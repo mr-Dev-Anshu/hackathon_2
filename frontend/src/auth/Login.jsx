@@ -5,11 +5,13 @@ import axios from "axios";
 import { HashLink } from "react-router-hash-link";
 import { FcGoogle } from "react-icons/fc";
 import { FaSkype } from "react-icons/fa";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [formData, setFormData] = useState("");
-  const  navigate = useNavigate() ; 
+  const navigate = useNavigate();
+  const notifySuccess = () => toast.success("User logged in successfully!");
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -17,15 +19,21 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formData;
-    console.log (email , password )
-      try {
-        const response = await axios.post("api/v1/users/signin" , {email , password }) ;
-        navigate("/")
-        window.location.reload()
-        console.log (response);
-      } catch (error) {
-        console.log (error.response.status) 
-      }
+    console.log(email, password);
+    try {
+      const response = await axios.post("api/v1/users/signin", {
+        email,
+        password,
+      });
+      notifySuccess();
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 1500);
+      console.log(response);
+    } catch (error) {
+      console.log(error.response.status);
+    }
   };
 
   return (
@@ -83,6 +91,7 @@ const Login = () => {
                 >
                   Log in
                 </button>
+                <Toaster />
               </form>
             </div>
             <div className="flex gap-2 justify-center items-center">

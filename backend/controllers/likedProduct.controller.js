@@ -25,7 +25,7 @@ const getLikedProduct = async (req, res) => {
     console.log(products);
     res
       .status(200)
-      .json(new ApiResponse(200, products, "Here is the liked products "));
+      .json(new ApiResponse(200, products, "Here is the liked products"));
   } catch (error) {
     res.status(400).json("Something went worng in the getting liked products ");
   }

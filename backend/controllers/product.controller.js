@@ -5,18 +5,18 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 export const uploadProduct = async (req, res) => {
   try {
-    const { name, price, category, description, quantity, username} = req.body;
+    const { name, price, category, description, quantity, username } = req.body;
     if (
       [name, price, category, description, quantity, username].some(
         (field) => field.trim() == ""
       )
     ) {
-      throw new ApiError(404, "all fields are requared ::: ");
+      throw new ApiError(404, "All fields are required!");
     }
     const path = req.file?.path;
 
     if (!path) {
-      throw new ApiError(404, "please Upload the product image  ");
+      throw new ApiError(404, "Product image not found!");
     }
 
     const img = await uploadOnCloudinary(path);
