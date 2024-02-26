@@ -141,7 +141,7 @@ export const signin = async (req, res) => {
         )
       );
   } catch (error) {
-    res.status(error?.statusCode).json(error.message);
+    res.status(400).json(error.message);
   }
 };
 

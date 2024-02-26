@@ -5,6 +5,7 @@ export const currentUserContext = createContext(null);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currUser, setCurrUser] = useState();
+  let isVerified = currUser?.isVerified;
 
   useEffect(() => {
     const fetchData = async () => {

@@ -17,9 +17,7 @@ const UserProfilePage = () => {
     }
   };
   const { currUser } = useContext(currentUserContext);
-  console.log(currUser.email);
-  console.log(currUser.username);
-  console.log(currUser.isVerified);
+  ;
   return (
     <div className="pt-20 w-full">
       <div className=" p-12 flex gap-4 w-full">
