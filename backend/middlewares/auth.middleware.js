@@ -12,10 +12,9 @@ export const jwtVerify = async (req, res, next) => {
       throw new ApiError(401, "invalid access Token :::");
     }
     req.user = user;
+    console.log("User Verified !");
     next();
   } catch (error) {
-    console.log("Not verified user ");
+    console.log("User not logged in !");
   }
 };
-
-

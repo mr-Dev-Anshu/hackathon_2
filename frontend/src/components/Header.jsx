@@ -38,7 +38,7 @@ const Header = () => {
               <FaRegUser size={18} />
             ) : (
               <p className="outline outline-slate-300 font-bold text-slate-500 h-7 w-7 rounded-full flex justify-center items-center">
-                {currUser.email.charAt(0).toUpperCase()}
+                {currUser?.email?.charAt(0).toUpperCase()}
               </p>
             )}
           </HashLink>

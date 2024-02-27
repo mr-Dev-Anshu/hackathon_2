@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 
 const ProductCard = (props) => {
-  const { currUser } = useContext(currentUserContext);
   const navigate = useNavigate();
+  const { currUser } = useContext(currentUserContext);
   const { items, setItems } = useContext(CartContext);
   const { wishlist, setWishlist } = useContext(WishlistContext);
 

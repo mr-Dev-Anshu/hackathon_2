@@ -9,9 +9,13 @@ import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-  const [formData, setFormData] = useState("");
+  
+  // toast ----->
   const navigate = useNavigate();
   const notifySuccess = () => toast.success("User logged in successfully!");
+  // toast ----->
+  
+  const [formData, setFormData] = useState("");
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
