@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { BsCartPlus } from "react-icons/bs";
 import { HashLink } from "react-router-hash-link";
 import { CartContext } from "../context/Cart";
-import { WishlistContext } from "../context/Wishlist";
+
 import toast, { Toaster } from "react-hot-toast";
 import { currentUserContext } from "../context/userContext/CurrentUserProvider";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ const ProductCard = (props) => {
   const navigate = useNavigate();
   const { currUser } = useContext(currentUserContext);
   const { items, setItems } = useContext(CartContext);
-  const { wishlist, setWishlist } = useContext(WishlistContext);
+
 
   const [likedData, setLikedData] = useState();
 
@@ -58,11 +58,6 @@ const ProductCard = (props) => {
     } catch (error) {
       console.log(error);
     }
-
-    setWishlist([
-      ...wishlist,
-      { name: props.name, src: props.src, price: props.price },
-    ]);
     notifySuccess("Added to Wishlist!");
   };
 

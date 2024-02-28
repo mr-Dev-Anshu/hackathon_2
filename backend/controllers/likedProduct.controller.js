@@ -9,7 +9,9 @@ const getLikedProduct = async (req, res) => {
   try {
     const products = await likedProduct.aggregate([
       {
-        $match: mongoose.Types.ObjectId(userId),
+        $match: {
+          userId: new mongoose.Types.ObjectId(userId),
+        },
       },
       {
         $lookup: {
@@ -23,12 +25,16 @@ const getLikedProduct = async (req, res) => {
         $unwind: "$product",
       },
     ]);
-    console.log(products);
     res
       .status(200)
-      .json(new ApiResponse(200, products, "Here is the liked products"));
+      .json(
+        products
+      );
   } catch (error) {
-    res.status(400).json("Something went worng in the getting liked products ");
+    console.error("Error fetching liked products:", error);
+    res
+      .status(500)
+      .json(new ApiResponse(500, null, "Failed to fetch liked products"));
   }
 };
 

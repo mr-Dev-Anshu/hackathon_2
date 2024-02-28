@@ -2,15 +2,8 @@ import React, { useContext } from "react";
 import { WishlistContext } from "../context/Wishlist";
 import { IoMdHeartEmpty } from "react-icons/io";
 
-// import { CartContext } from "../context/Cart";
-
 const Wishlist = () => {
-  const Wish = useContext(WishlistContext);
-  // const { items, setItems } = useContext(CartContext);
-
-  // const addToCart = () => {
-  //   setItems([...items, { name: Wish.name, price: Wish.price, src: Wish.src }]);
-  // };
+  const { wishlist } = useContext(WishlistContext);
 
   return (
     <div className="pt-20">
@@ -20,13 +13,20 @@ const Wishlist = () => {
         </p>
       </div>
       <hr />
-      {Wish &&
-        Wish.wishlist.map((wish) => (
-          <li className=" flex p-3 shadow-md w-full rounded-lg" key={wish.id}>
-            <img className="h-36 rounded-lg" src={wish.src} alt="" />
+      {wishlist &&
+        wishlist.map((item) => (
+          <li
+            className=" flex p-3 shadow-md w-full rounded-lg"
+            key={item.product._id}
+          >
+            <img
+              className="h-36 rounded-lg"
+              src={item.product.productImg}
+              alt=""
+            />
             <div className=" w-full flex flex-row justify-between p-2 px-5">
               <div className="flex flex-col w-[40%] justify-between">
-                <p className="text-xl font-semibold">{wish.name}</p>
+                <p className="text-xl font-semibold">{item.product.name}</p>
                 <div className="flex flex-row justify-between">
                   <button className="outline outline-slate-300 rounded-lg p-2 w-[30%] ">
                     Add To Cart
@@ -39,7 +39,9 @@ const Wishlist = () => {
                   </button>
                 </div>
               </div>
-              <p className="text-xl font-semibold w-fit">₹ {wish.price}</p>
+              <p className="text-xl font-semibold w-fit">
+                ₹ {item.product.price}
+              </p>
             </div>
           </li>
         ))}
