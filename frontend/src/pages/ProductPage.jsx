@@ -8,13 +8,15 @@ const ProductPage = () => {
   return (
     <div className="w-full p-2 lg:p-8 h-fit grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 place-items-center gap-3 ">
       {product.map((item) => (
-        <ProductCard
-          category={item.category}
-          name={item.name}
-          price={item.price}
-          src={item.productImg}
-          id={item._id}
-        />
+        <div key={item.id}>
+          <ProductCard
+            category={item.category}
+            name={item.name}
+            price={item.price}
+            src={item.productImg}
+            id={item._id}
+          />
+        </div>
       ))}
     </div>
   );

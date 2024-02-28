@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsCartPlus } from "react-icons/bs";
 import { HashLink } from "react-router-hash-link";
 import { CartContext } from "../context/Cart";
@@ -7,12 +7,15 @@ import toast, { Toaster } from "react-hot-toast";
 import { currentUserContext } from "../context/userContext/CurrentUserProvider";
 import { useNavigate } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
+import axios from "axios";
 
 const ProductCard = (props) => {
   const navigate = useNavigate();
   const { currUser } = useContext(currentUserContext);
   const { items, setItems } = useContext(CartContext);
   const { wishlist, setWishlist } = useContext(WishlistContext);
+
+  const [likedData, setLikedData] = useState();
 
   // toast
   const notifySuccess = (message) => toast.success(message, { duration: 1000 });
@@ -33,19 +36,34 @@ const ProductCard = (props) => {
     }
   };
 
-  const addToWishlist = () => {
+  useEffect(() => {
+    setLikedData({ ...likedData, userId: currUser?._id, productId: props?.id });
+  }, []);
+
+  const addToWishlist = async () => {
     if (!currUser) {
+      console.log(props.id);
       warning();
       setTimeout(() => {
         navigate("/login");
       }, 1000);
-    } else {
-      setWishlist([
-        ...wishlist,
-        { name: props.name, src: props.src, price: props.price },
-      ]);
-      notifySuccess("Added to Wishlist!");
+      return;
     }
+
+    console.log(likedData);
+
+    try {
+      const res = await axios.post("api/v1/products/addLike", likedData);
+      console.log(res.status);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setWishlist([
+      ...wishlist,
+      { name: props.name, src: props.src, price: props.price },
+    ]);
+    notifySuccess("Added to Wishlist!");
   };
 
   return (

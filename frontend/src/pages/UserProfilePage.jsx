@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { currentUserContext } from "../context/userContext/CurrentUserProvider";
 import { LuPackageCheck, LuPackageOpen, LuPackageX } from "react-icons/lu";
 import { FaMapLocation } from "react-icons/fa6";
@@ -10,14 +10,17 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const UserProfilePage = () => {
+  const [loggedOut, setLoggedOut] = useState(false);
   const notifySuccess = () => toast.success("User logged out successfully !");
   const notifyError = () => toast.success("Error occured !");
   const navigate = useNavigate();
 
   const logout = async () => {
     try {
+      setLoggedOut(true);
       const response = await axios.get("api/v1/users/logout");
       notifySuccess();
+      setLoggedOut(false);
       setTimeout(() => {
         navigate("/");
         window.location.reload();
@@ -97,7 +100,7 @@ const UserProfilePage = () => {
           </div>
           <div className="p-4 text-xl font-semibold rounded-lg shadow-xl flex justify-center items-center hover:bg-orange-400 transition-colors duration-200">
             <button onClick={logout} className="w-full">
-              Log Out
+              {loggedOut ? <p>Please Wait...</p> : <p>Log Out</p>}
             </button>
             <Toaster />
           </div>

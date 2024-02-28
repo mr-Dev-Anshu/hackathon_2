@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="container">
         <div className="flex flex-col lg:flex-row gap-2 justify-between">
           <div className="col-md-4">
-            <img className="h-12" src={logo} alt="" />
+            <img className="h-12" src={logo} alt="" /> 
             <h4 className="text-xl font-semibold">About Us</h4>
             <p>This e-commerce Website is being build for a hackathon.</p>
           </div>

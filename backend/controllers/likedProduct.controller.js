@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { ApiError } from "../utils/ApiError.js";
 import { likedProduct } from "../models/likedProduct.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
@@ -33,12 +34,19 @@ const getLikedProduct = async (req, res) => {
 
 const addLike = async (req, res) => {
   const { userId, productId } = req.body;
+  console.log(req.body);
+  console.log("userId:", userId, "Product Id:", productId);
 
   try {
+    if (!userId || !productId) {
+      throw new ApiError(400, "userId or ProductId not found!");
+    }
     const liked = await likedProduct.create({ userId, productId });
-    console.log (liked)
+    console.log(liked);
     res.status(200).json(liked);
-  } catch (error) {}
+  } catch (error) {
+    console.log("Error while adding into liked products!", error.message);
+  }
 };
 
 export { getLikedProduct, addLike };

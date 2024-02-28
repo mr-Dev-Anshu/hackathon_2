@@ -1,14 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import img from "../assets/logoweb.png";
 import img3 from "../assets/cart.jpg";
 import axios from "axios";
 import { HashLink } from "react-router-hash-link";
 import { useNavigate } from "react-router-dom";
-import { currentUserContext } from "../context/userContext/CurrentUserProvider";
 const Register = () => {
   const [formData, setFormData] = useState("");
   const navigate = useNavigate();
-  const { currUser } = useContext(currentUserContext);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -24,12 +22,11 @@ const Register = () => {
       });
 
       console.log(response);
+      navigate("/verificationPage");
     } catch (error) {
       console.log("Something went Wrong!", error);
     }
   };
-
-
 
   return (
     <div className="h-screen w-full flex justify-center items-center pt-6">
@@ -50,6 +47,7 @@ const Register = () => {
                 onSubmit={handleSubmit}
               >
                 <input
+                  required
                   className="outline p-3 rounded-md outline-slate-200"
                   type="text"
                   id="username"
@@ -57,6 +55,7 @@ const Register = () => {
                   onChange={handleChange}
                 />
                 <input
+                  required
                   className="outline p-3 rounded-md outline-slate-200"
                   type="email"
                   id="email"
@@ -64,6 +63,7 @@ const Register = () => {
                   onChange={handleChange}
                 />
                 <input
+                  required
                   className="outline p-3 rounded-md outline-slate-200"
                   type="password"
                   id="password"

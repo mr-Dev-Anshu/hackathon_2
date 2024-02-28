@@ -9,12 +9,14 @@ import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-  
+  const [error, setError] = useState(false);
+  const [loggingIn, setLoggingIn] = useState(false);
+
   // toast ----->
   const navigate = useNavigate();
   const notifySuccess = () => toast.success("User logged in successfully!");
   // toast ----->
-  
+
   const [formData, setFormData] = useState("");
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -25,17 +27,22 @@ const Login = () => {
     const { email, password } = formData;
     console.log(email, password);
     try {
+      setLoggingIn(true);
       const response = await axios.post("api/v1/users/signin", {
         email,
         password,
       });
       notifySuccess();
+      setLoggingIn(false);
       setTimeout(() => {
         navigate("/");
         window.location.reload();
       }, 1500);
       console.log(response);
+      setError(false);
     } catch (error) {
+      setError(true);
+      setLoggingIn(false);
       console.log(error.response.status);
     }
   };
@@ -93,7 +100,7 @@ const Login = () => {
                   className="outline p-3 rounded-md outline-slate-200 bg-blue-600 text-white font-semibold text-xl"
                   type="submit"
                 >
-                  Log in
+                  {loggingIn ? <p>Please Wait...</p> : <p>Log in</p>}
                 </button>
                 <Toaster />
               </form>
@@ -106,6 +113,11 @@ const Login = () => {
                 </p>
               </HashLink>
             </div>
+            {error ? (
+              <p className="text-center text-red-700 ">
+                Wrong Email or Password!
+              </p>
+            ) : null}
           </div>
         </div>
         <div className=" w-[50%] overflow-hidden">

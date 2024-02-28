@@ -15,6 +15,7 @@ import UserProfilePage from "./pages/UserProfilePage";
 
 import UploadProduct from "./pages/UploadProduct";
 import ViewProduct from "./pages/ViewProduct";
+import VerificationMsgPage from "./pages/VerificationMsgPage";
 
 function App() {
   const { currUser } = useContext(currentUserContext);
@@ -36,6 +37,7 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/uploadProduct" element={<UploadProduct />} />
         <Route path="/:id" element={<ViewProduct />} />
+        <Route path="/verificationPage" element={<VerificationMsgPage />} />
       </Routes>
       <Footer />
     </Router>
