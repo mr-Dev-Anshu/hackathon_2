@@ -47,7 +47,13 @@ export const uploadProduct = async (req, res) => {
 
   export const getProducts = async (req,res) => {
          try {
-        const products = await Product.find({}) ; 
+          const {category} = req.query;
+          const queryObject = {}
+
+          if(category) {
+            queryObject.category= category
+          }
+        const products = await Product.find(queryObject) ; 
         //  console.log (products) ;
         return res.status(200).json(new ApiResponse(200 , products , "Product fetched successfully " )) ; 
          } catch (error) {
