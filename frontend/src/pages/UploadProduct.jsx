@@ -8,6 +8,8 @@ const UploadProduct = () => {
   const { currUser } = useContext(currentUserContext);
   const user = currUser?.username;
 
+  const [uploading, setUploading] = useState(false);
+
   const [productData, setProductData] = useState({
     username: user,
     category: "",
@@ -35,7 +37,7 @@ const UploadProduct = () => {
     e.preventDefault();
 
     try {
-      console.log(productData);
+      setUploading(true);
 
       await axios.post("api/v1/products/add", productData, {
         headers: {
@@ -43,7 +45,9 @@ const UploadProduct = () => {
         },
       });
       notifySuccess();
+      setUploading(false);
     } catch (error) {
+      setUploading(false);
       console.log("Error occured while uploading product ");
       notifyError();
     }
@@ -117,7 +121,7 @@ const UploadProduct = () => {
             onClick={handleSubmit}
             className=" p-2 rounded-lg shadow-xl text-xl bg-green-200 font-bold font-serif  "
           >
-            Upload
+            {uploading ? <p>Uploading...</p> : <p>Upload</p>}
           </button>
           <Toaster />
         </form>
