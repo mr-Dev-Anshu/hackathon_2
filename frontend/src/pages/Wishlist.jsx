@@ -20,7 +20,7 @@ const Wishlist = () => {
             key={item.product._id}
           >
             <img
-              className="h-36 rounded-lg"
+              className="h-36 min-w-[250px] rounded-lg"
               src={item.product.productImg}
               alt=""
             />
