@@ -8,7 +8,7 @@ const dbConnection =async  () => {
        console.log ("DataBase got connected ") ; 
      } catch (error) {
         
-       console.log ("Data base connection field " , error )
+       console.log ("Data base connection failed! " , error )
      }
 }
 
